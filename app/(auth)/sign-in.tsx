@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
+import FormField from "@/components/FormField";
 
 const SignIn = () => {
   return (
@@ -16,6 +17,7 @@ const SignIn = () => {
           <Text className="text-white  text-semibold font-psemibold text-3xl mt-5">
             Log in to Aora
           </Text>
+          <FormField />
         </View>
       </ScrollView>
     </SafeAreaView>
