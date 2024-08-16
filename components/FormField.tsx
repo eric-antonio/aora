@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Image,
+} from "react-native";
+import { icons, images } from "@/constants";
+import CustomButton from "./CustomButton";
 interface FormFieldProps {
   title: string;
   value: string;
@@ -16,8 +25,7 @@ const FormField = ({
   otherStyles,
   ...props
 }: FormFieldProps) => {
-
-    const [showpassword, setShowpassword] = useState(false)
+  const [showpassword, setShowpassword] = useState(false);
   return (
     <View className={`space-y-2 ${otherStyles}`}>
       <Text className={`text-base text-gray-100 font-pmedium`}>{title}</Text>
@@ -28,10 +36,19 @@ const FormField = ({
           value={value}
           onChangeText={handleChangeText}
           placeholder={placeholder}
-          secureTextEntry={title === "Password" && !showpassword}
           className="text-white font-psemibold flex-1"
+          secureTextEntry={title === "Password" && !showpassword}
           {...props}
         />
+        {title === "Password" && (
+          <TouchableOpacity onPress={() => setShowpassword(!showpassword)}>
+            <Image
+              source={showpassword ? icons.eye : icons.eyeHide}
+              className="w-6 h-6"
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
