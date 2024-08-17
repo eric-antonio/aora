@@ -73,7 +73,7 @@ const SignUp = () => {
     </SafeAreaView>
   );
 };
-
+// com.eric.aora
 export default SignUp;
 
 const styles = StyleSheet.create({});
