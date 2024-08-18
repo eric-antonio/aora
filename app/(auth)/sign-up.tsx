@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useState } from "react";
 import { createUser } from "../../lib/appwrite";
 
@@ -15,15 +15,22 @@ const SignUp = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submitForm = () => {
-    if (!form.username || !form.email || !form.password)
+  const submitForm = async () => {
+    if (!form.username || !form.email || !form.password) {
       Alert.alert("Error", "Please fill all fields");
-
+      return;
+    }
+  
     setIsSubmitting(true);
-
+  
     try {
+      console.log('Attempting to create user...');
+      const result = await createUser(form.email, form.password, form.username);
+      console.log('User created successfully:', result);
+      router.replace("/home");
     } catch (error) {
-      Alert.alert("Error", "something went wrong");
+      console.error('Error creating user:', error);
+      Alert.alert("Error", "Something went wrong");
     } finally {
       setIsSubmitting(false);
     }
