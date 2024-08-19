@@ -26,7 +26,8 @@ const SignIn = () => {
       await signIn(form.email, form.password);
       router.replace("/home");
     } catch (error) {
-      Alert.alert("Error", "Something went wrong");
+      console.log('Error signing in:', error);
+      Alert.alert("Error", "Something went wrong while signing in");
     } finally {
       setIsSubmitting(false);
     }

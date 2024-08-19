@@ -30,7 +30,7 @@ const SignUp = () => {
       router.replace("/home");
     } catch (error) {
       console.error('Error creating user:', error);
-      Alert.alert("Error", "Something went wrong");
+      Alert.alert("Error", "Something went wrong while signing up");
     } finally {
       setIsSubmitting(false);
     }
