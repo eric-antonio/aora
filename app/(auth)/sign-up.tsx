@@ -16,7 +16,7 @@ const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitForm = async () => {
-    if (form.username|| !form.email || !form.password) {
+    if (form.username === "" || form.email === "" || form.password === "") {
       Alert.alert("Error", "Please fill all fields");
       return;
     }
@@ -24,9 +24,9 @@ const SignUp = () => {
     setIsSubmitting(true);
 
     try {
-      console.log("Attempting to create user...");
       const result = await createUser(form.email, form.password, form.username);
       console.log("User created successfully:", result);
+      setIsLogged(true);
       router.replace("/home");
     } catch (error) {
       console.error("Error creating user:", error);
@@ -96,3 +96,6 @@ const SignUp = () => {
 export default SignUp;
 
 const styles = StyleSheet.create({});
+function setIsLogged(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
