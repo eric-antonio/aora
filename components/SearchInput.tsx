@@ -10,7 +10,7 @@ import {
 import { icons, images } from "@/constants";
 import CustomButton from "./CustomButton";
 interface FormFieldProps {
-  title: string;
+
   value: string;
   placeholder: string;
   handleChangeText: (e: string) => void;
@@ -18,7 +18,6 @@ interface FormFieldProps {
 }
 
 const SearchInput = ({
-  title,
   value,
   handleChangeText,
   placeholder,
