@@ -35,9 +35,8 @@ const Home = () => {
               </View>
             </View>
             <SearchInput
-              title={""}
               value={""}
-              placeholder={""}
+              placeholder={"Search"}
               handleChangeText={function (e: string): void {
                 throw new Error("Function not implemented.");
               }}
