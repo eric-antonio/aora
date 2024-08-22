@@ -1,14 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import React from "react";
+type TrendingPosts = {
+  posts: { id: string }[];
+};
 
-const Trending = () => {
+const Trending = ({ posts }: TrendingPosts) => {
   return (
-    <View>
-      <Text>Trending</Text>
-    </View>
-  )
-}
+    <FlatList
+      data={posts}
+      keyExtractor={(item) => item.$id}
+      renderItem={({ item }) => <Text className="text-white">{item.id}</Text>}
+      horizontal
+    />
+  );
+};
 
-export default Trending
+export default Trending;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
