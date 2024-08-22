@@ -10,12 +10,13 @@ import { useGlobalContext } from "@/context/GlobalProvider";
 const Home = () => {
   const { user } = useGlobalContext();
 
-  console.log(user)
+  console.log(user);
 
   return (
     <SafeAreaView className="bg-primary w-full h-full">
       <FlatList
-        data={[{ id: 1 }, { id: 2 }, { id: 3 }]}
+        // data={[{ id: 13 }, { id: 22}, { id: 43 }]}
+        data={[]}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <Text className="text-3xl text-white">{item.id}</Text>
@@ -29,7 +30,7 @@ const Home = () => {
                 </Text>
                 <Text className="text-2xl font-psemibold text-white">
                   {" "}
-                  { user && (user.name).toLocaleUpperCase() }
+                  {user && user.name.toLocaleUpperCase()}
                 </Text>
               </View>
               <View className="mt-1.5">
@@ -52,9 +53,13 @@ const Home = () => {
               <Text className="text-gray-100 font-pregular text-lg mb-3">
                 Latest Videos{" "}
               </Text>
-              <Trending />
+              <Trending posts={[{ id: "1" }, { id: "2" }, { id: "3" }] ?? []} />
             </View>
           </View>
+        )}
+
+        ListEmptyComponent={() => (
+          <Text className="text-white text-center">No Videos Found</Text>
         )}
       />
     </SafeAreaView>
