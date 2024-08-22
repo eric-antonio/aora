@@ -4,8 +4,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
 import Search from "../search/[query]";
 import SearchInput from "@/components/SearchInput";
+import Trending from "@/components/trending";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
 const Home = () => {
+  const { user } = useGlobalContext();
+
+  console.log(user)
+
   return (
     <SafeAreaView className="bg-primary w-full h-full">
       <FlatList
@@ -19,11 +25,11 @@ const Home = () => {
             <View className="justify-between items-start flex-row mb-6">
               <View className="flex-1">
                 <Text className="font-pmedium text-sm text-gray-100">
-                  Welcome Back Sr Eric
+                  Welcome Back Sr
                 </Text>
                 <Text className="text-2xl font-psemibold text-white">
                   {" "}
-                  Eric Antonio
+                  { user && (user.name).toLocaleUpperCase() }
                 </Text>
               </View>
               <View className="mt-1.5">
@@ -35,12 +41,19 @@ const Home = () => {
               </View>
             </View>
             <SearchInput
+              title={"Search "}
               value={""}
-              placeholder={"Search"}
+              placeholder={"Search for a video Topic"}
               handleChangeText={function (e: string): void {
                 throw new Error("Function not implemented.");
               }}
             />
+            <View className="w-full flex-1 pt-5 pb-8">
+              <Text className="text-gray-100 font-pregular text-lg mb-3">
+                Latest Videos{" "}
+              </Text>
+              <Trending />
+            </View>
           </View>
         )}
       />

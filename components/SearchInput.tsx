@@ -10,7 +10,7 @@ import {
 import { icons, images } from "@/constants";
 import CustomButton from "./CustomButton";
 interface FormFieldProps {
-
+  title: string;
   value: string;
   placeholder: string;
   handleChangeText: (e: string) => void;
@@ -18,6 +18,7 @@ interface FormFieldProps {
 }
 
 const SearchInput = ({
+  title,
   value,
   handleChangeText,
   placeholder,
@@ -26,14 +27,13 @@ const SearchInput = ({
 }: FormFieldProps) => {
   const [showpassword, setShowpassword] = useState(false);
   return (
-    <View
-      className={` bg-black-100 border-2 border-black-200 focus:border-secondary  rounded-lg flex flex-row items-center justify-between border-black-500`}
-    >
+    <View className="border-2 border-black-200 w-full h-16 bg-black-100 rounded-2xl focus:border-secondary items-center  space-x-4 flex-row ">
       <TextInput
         value={value}
         onChangeText={handleChangeText}
         placeholder={placeholder}
-        className="text-white  text-base  mt-0.5 flex-1"
+        placeholderTextColor={"#fff"}
+        className="text-white text-base  mt-0.5   flex-1"
         secureTextEntry={title === "Password" && !showpassword}
         {...props}
       />
