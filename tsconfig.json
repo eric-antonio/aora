@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "lib/appwrite.js", "app/(tabs)/home.tsx"  ]
+, "lib/appwrite.js", "app/(tabs)/home.tsx", "lib/UseAppwrite.ts"  ]
 }
