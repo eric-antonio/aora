@@ -20,9 +20,11 @@ const VideoCard = ({
               resizeMode="cover"
             />
           </View>
+          <View className="justify-center flex-1 ml-3 gap-y-1 ">
+            <Text className="text-white font-psemibold text-sm">{title}</Text>
+          </View>
         </View>
       </View>
-      <Text className="text-2xl text-white">{title}</Text>
     </View>
   );
 };
