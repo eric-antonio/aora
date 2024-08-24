@@ -22,13 +22,13 @@ interface Document {
 }
 
 const Home = () => {
-  const { data: posts } = useAppwrite(getAllPosts);
+  const { data: posts, refetch } = useAppwrite(getAllPosts);
   const { user } = useGlobalContext();
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
     setRefreshing(true);
-
+    await refetch();
     setRefreshing(false);
   };
 
