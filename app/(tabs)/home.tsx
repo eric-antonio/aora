@@ -15,17 +15,22 @@ import Trending from "@/components/trending";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import EmptyState from "@/components/EmptyState";
 import { getAllPosts } from "@/lib/appwrite";
+import useAppwrite from "../../lib/UseAppwrite";
 interface Document {
   id: number;
   title: string;
 }
 
 const Home = () => {
+  const { data: posts } = useAppwrite(getAllPosts);
   const { user } = useGlobalContext();
   const [refreshing, setRefreshing] = useState(false);
 
+  const onRefresh = async () => {
+    setRefreshing(true);
 
-
+    setRefreshing(false);
+  };
 
   return (
     <SafeAreaView className="bg-primary w-full h-full">
