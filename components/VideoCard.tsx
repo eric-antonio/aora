@@ -21,7 +21,12 @@ const VideoCard = ({
             />
           </View>
           <View className="justify-center flex-1 ml-3 gap-y-1 ">
-            <Text className="text-white font-psemibold text-sm">{title}</Text>
+            <Text
+              className="text-white font-psemibold text-sm"
+              numberOfLines={1}
+            >
+              {title}
+            </Text>
           </View>
         </View>
       </View>
