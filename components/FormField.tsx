@@ -16,7 +16,6 @@ interface FormFieldProps {
   handleChangeText: (e: string) => void;
   otherStyles?: string;
 }
-
 const FormField = ({
   title,
   value,
