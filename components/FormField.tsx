@@ -54,5 +54,3 @@ const FormField = ({
 };
 
 export default FormField;
-
-const styles = StyleSheet.create({});
