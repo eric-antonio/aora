@@ -14,7 +14,7 @@ import SearchInput from "@/components/SearchInput";
 import Trending from "@/components/trending";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import EmptyState from "@/components/EmptyState";
-import { getAllPosts } from "@/lib/appwrite";
+import { getAllPosts, getLatestPosts } from "@/lib/appwrite";
 import useAppwrite from "../../lib/UseAppwrite";
 import VideoCard from "@/components/VideoCard";
 interface Document {
@@ -24,6 +24,8 @@ interface Document {
 
 const Home = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts);
+  const { data: latestPosts } = useAppwrite(getLatestPosts);
+
   const { user } = useGlobalContext();
   const [refreshing, setRefreshing] = useState(false);
 
@@ -39,7 +41,7 @@ const Home = () => {
         data={posts}
         key="2"
         keyExtractor={(item) => item.$id}
-        renderItem={({ item }) => <VideoCard  video={item}/>}
+        renderItem={({ item }) => <VideoCard video={item} />}
         ListHeaderComponent={() => (
           <View className="my-6 px-4 space-y-6">
             <View className="justify-between items-start flex-row mb-6">
@@ -72,7 +74,7 @@ const Home = () => {
               <Text className="text-gray-100 font-pregular text-lg mb-3">
                 Latest Videos{" "}
               </Text>
-              <Trending posts={[{ id: "1" }, { id: "2" }, { id: "3" }] ?? []} />
+              <Trending posts={latestPosts ?? []} />
             </View>
           </View>
         )}
