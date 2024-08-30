@@ -59,7 +59,7 @@ const TrendingItem = ({ activeItem, item }: TrendingItemProps) => {
           useNativeControls
           shouldPlay
           onPlaybackStatusUpdate={(status) => {
-            if (status.didJustFinish) {
+            if(status.didJustFinish) {
               setPaly(false);
             }
           }}
