@@ -8,6 +8,7 @@ import {
   View,
   Image,
 } from "react-native";
+import { Video, ResizeMode } from "expo-av";
 import * as Animatable from "react-native-animatable";
 
 interface TrendingPosts {
@@ -51,7 +52,18 @@ const TrendingItem = ({ activeItem, item }: TrendingItemProps) => {
       duration={500}
     >
       {paly ? (
-        <Text className="text-white">Playing</Text>
+        <Video
+          source={{ uri: item.video }}
+          className="w-52 h-72 rounded-[35px] bg-white/10"
+          resizeMode={ResizeMode.CONTAIN}
+          useNativeControls
+          shouldPlay
+          onPlaybackStatusUpdate={(status) => {
+            if (status.didJustFinish) {
+              setPaly(false);
+            }
+          }}
+        />
       ) : (
         <TouchableOpacity
           className="relative justify-center items-center"
@@ -60,7 +72,7 @@ const TrendingItem = ({ activeItem, item }: TrendingItemProps) => {
         >
           <ImageBackground
             source={{ uri: item.thumbnail }}
-            className="w-52 h-72 rounded-[32px] my-5 mx-3 overflow-hidden shadow-lg shadow-black/40"
+            className="w-52 h-72 rounded-[35px] my-5 mx-3 overflow-hidden shadow-lg shadow-black/40"
             resizeMode="cover"
           />
           <Image
