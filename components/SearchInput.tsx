@@ -10,10 +10,12 @@ import {
 } from "react-native";
 import { icons, images } from "@/constants";
 import { router, usePathname } from "expo-router";
-
-const SearchInput = () => {
+interface SearchInputProps {
+  initialQuery: string;
+}
+const SearchInput = ({ initialQuery }: SearchInputProps) => {
   const pathname = usePathname();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery || "");
   return (
     <View className="border-2 border-black-200 w-full h-16 bg-black-100 rounded-2xl focus:border-secondary items-center  space-x-4 flex-row  ">
       <TextInput
