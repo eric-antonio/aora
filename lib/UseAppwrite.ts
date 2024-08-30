@@ -10,8 +10,6 @@ const useAppwrite = (fn: () => Promise<any>) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  
-
   const fetchData = async () => {
     setIsLoading(true);
 
@@ -19,7 +17,10 @@ const useAppwrite = (fn: () => Promise<any>) => {
       const response = await fn();
       setData(response);
     } catch (error) {
-      Alert.alert("Bug here!");
+      Alert.alert(
+        "Handling a problem fetching results!",
+        "Well i also don't know  what's going on "
+      );
     } finally {
       setIsLoading(false);
     }
@@ -30,7 +31,7 @@ const useAppwrite = (fn: () => Promise<any>) => {
   }, []);
 
   const refetch = () => fetchData();
-  return { data , isLoading,refetch};
+  return { data, isLoading, refetch };
 };
 
 export default useAppwrite;
