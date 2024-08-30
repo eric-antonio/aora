@@ -63,9 +63,9 @@ const Home = () => {
               </View>
             </View>
             <SearchInput
-              title={"Search "}
+              title="Search "
               value={""}
-              placeholder={"Search for a video Topic"}
+              placeholder="Search for a video Topic"
               handleChangeText={function (e: string): void {
                 throw new Error("Function not implemented.");
               }}
