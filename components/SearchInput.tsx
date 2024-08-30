@@ -6,38 +6,36 @@ import {
   TouchableOpacity,
   View,
   Image,
+  Alert,
 } from "react-native";
 import { icons, images } from "@/constants";
-import CustomButton from "./CustomButton";
-interface FormFieldProps {
-  title: string;
-  value: string;
-  placeholder: string;
-  handleChangeText: (e: string) => void;
-  otherStyles?: string;
-}
+import { router, usePathname } from "expo-router";
 
-const SearchInput = ({
-  title,
-  value,
-  handleChangeText,
-  placeholder,
-  otherStyles,
-  ...props
-}: FormFieldProps) => {
-  const [showpassword, setShowpassword] = useState(false);
+const SearchInput = () => {
+  const pathname = usePathname();
+  const [query, setQuery] = useState("");
   return (
-    <View className="border-2 border-black-200 w-full h-16 bg-black-100 rounded-2xl focus:border-secondary items-center  space-x-4 flex-row ">
+    <View className="border-2 border-black-200 w-full h-16 bg-black-100 rounded-2xl focus:border-secondary items-center  space-x-4 flex-row  ">
       <TextInput
-        value={value}
-        onChangeText={handleChangeText}
-        placeholder={placeholder}
-        placeholderTextColor={"#fff"}
-        className="text-white text-base  mt-0.5   flex-1"
-        secureTextEntry={title === "Password" && !showpassword}
-        {...props}
+        value={query}
+        onChangeText={(e) => setQuery(e)}
+        placeholder="Search for a a video topic"
+        placeholderTextColor={"#CDCDE0"}
+        className="text-white text-base ml-3  mt-0.5   flex-1"
       />
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          if (!query) {
+            return Alert.alert(
+              "Missing query",
+              "Please  input something to search results across the dataBase "
+            );
+          }
+
+          if (pathname.startsWith("/search/")) router.setParams({ query });
+          else router.push(`/search/${query}`);
+        }}
+      >
         <Image
           source={icons.search}
           className="w-5 h-5 mr-3"
