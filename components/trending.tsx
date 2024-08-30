@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import {
   FlatList,
   ImageBackground,
-  Text,
   TouchableOpacity,
-  View,
   Image,
 } from "react-native";
 import { Video, ResizeMode } from "expo-av";
@@ -59,7 +57,7 @@ const TrendingItem = ({ activeItem, item }: TrendingItemProps) => {
           useNativeControls
           shouldPlay
           onPlaybackStatusUpdate={(status) => {
-            if(status.didJustFinish) {
+            if (status.didJustFinish) {
               setPaly(false);
             }
           }}
