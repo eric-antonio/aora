@@ -9,6 +9,7 @@ import useAppwrite from "../../lib/UseAppwrite";
 import { getUserPosts } from "@/lib/appwrite";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { icons } from "@/constants";
+import InfoBox from "@/components/InfoBox";
 interface Document {
   id: number;
   title: string;
@@ -17,7 +18,7 @@ interface Document {
 const Profile = () => {
   const { user, setUser, setIsLoggedIn } = useGlobalContext();
   const { data: posts } = useAppwrite(() => getUserPosts(user.$id));
-console.log(user)
+  console.log(user);
   const logOut = () => {};
   return (
     <SafeAreaView className="bg-primary w-full h-full">
@@ -45,9 +46,24 @@ console.log(user)
                 className="w-[90%] h-[90%] rounded-lg"
               />
             </View>
-            <Text className="text-white font-psemibold text-xl mt-4">
-              {user?.name}
-            </Text>
+            <InfoBox
+              title={user?.name}
+              containerStyles="mt-5"
+              titleStyles="text-lg"
+            />
+            <View className="mt-5 flex-row">
+              <InfoBox
+                title={posts.length || 0}
+                subtitle="Posts"
+                containerStyles="mr-10"
+                titleStyles="text-xl"
+              />
+              <InfoBox
+                title={user?.followers?.length || "1.2K"}
+                subtitle="Followers"
+                titleStyles="text-xl"
+              />
+            </View>
           </View>
         )}
         ListEmptyComponent={() => (
