@@ -6,10 +6,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList, View, Text, Image, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import useAppwrite from "../../lib/UseAppwrite";
-import { getUserPosts } from "@/lib/appwrite";
+import { getUserPosts, signOut } from "@/lib/appwrite";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { icons } from "@/constants";
 import InfoBox from "@/components/InfoBox";
+import { isLoading } from "expo-font";
+import { router } from "expo-router";
 interface Document {
   id: number;
   title: string;
@@ -19,7 +21,13 @@ const Profile = () => {
   const { user, setUser, setIsLoggedIn } = useGlobalContext();
   const { data: posts } = useAppwrite(() => getUserPosts(user.$id));
   console.log(user);
-  const logOut = () => {};
+
+  const logOut = async () => {
+    await signOut();
+    setUser(null);
+    setIsLoggedIn(false);
+    router.replace("/sign-in");
+  };
   return (
     <SafeAreaView className="bg-primary w-full h-full">
       <FlatList
